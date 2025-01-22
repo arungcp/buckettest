@@ -17,33 +17,29 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.5.0  # Specify the Terraform version you need
-    
-    - name: List files in 'gcp' directory
-      run: ls -R gcp
-
 
     - name: Install dependencies
       run: terraform init
-      working-directory: 'gcp'
+      working-directory: './gcp'  # Ensure the working directory is correctly set
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
     - name: Terraform Format Check
-      run: terraform fmt -check -recursive
-      working-directory: './gcp'
+      run: terraform fmt -check
+      working-directory: './gcp'  # Ensure the correct directory
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
     - name: Plan Terraform deployment
       run: |
-        terraform plan -out=tfplan -var-file="gcp/terraform.tfvars"
-      working-directory: './gcp'
+        terraform plan -out=tfplan -var-file="terraform.tfvars" 
+      working-directory: './gcp'  # Ensure the working directory is correctly set
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
     - name: Apply Terraform deployment
       run: |
-        terraform apply -auto-approve tfplan -var-file="gcp/terraform.tfvars" 
-      working-directory: './gcp'
+        terraform apply -auto-approve tfplan -var-file="terraform.tfvars"  
+      working-directory: './gcp'  # Ensure the working directory is correctly set
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
