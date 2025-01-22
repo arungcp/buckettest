@@ -32,7 +32,7 @@ jobs:
 
     - name: Plan Terraform deployment
       run: |
-        terraform plan -out=tfplan -var-file="terraform.tfvars"
+        terraform plan -out=tfplan -var-file="env/terraform.tfvars"
       working-directory: './gcp'  # Ensure the working directory is correctly set
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
