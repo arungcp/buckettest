@@ -26,20 +26,20 @@ jobs:
 
     - name: Terraform Format Check
       run: terraform fmt -check -recursive
-      working-directory: 'gcp'
+      working-directory: './gcp'
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
     - name: Plan Terraform deployment
       run: |
         terraform plan -out=tfplan -var-file="gcp/terraform.tfvars"
-      working-directory: 'gcp'
+      working-directory: './gcp'
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
     - name: Apply Terraform deployment
       run: |
         terraform apply -auto-approve tfplan -var-file="gcp/terraform.tfvars" 
-      working-directory: 'gcp'
+      working-directory: './gcp'
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
