@@ -17,6 +17,10 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.5.0  # Specify the Terraform version you need
+    
+    - name: List files in 'gcp' directory
+      run: ls -R gcp
+
 
     - name: Install dependencies
       run: terraform init
