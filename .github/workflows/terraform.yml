@@ -32,14 +32,14 @@ jobs:
 
     - name: Plan Terraform deployment
       run: |
-        terraform plan -out=tfplan -var-file="terraform.tfvars" 
+        terraform plan -out=tfplan -var-file="terraform.tfvars"
       working-directory: './gcp'  # Ensure the working directory is correctly set
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
     - name: Apply Terraform deployment
       run: |
-        terraform apply -auto-approve tfplan -var-file="terraform.tfvars"  
+        terraform apply -auto-approve tfplan 
       working-directory: './gcp'  # Ensure the working directory is correctly set
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
