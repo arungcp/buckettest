@@ -5,6 +5,7 @@ resource "google_compute_network" "test_vpc" {
 resource "google_compute_router" "cloudcr" {
   name    = var.cloud_router_name
   network = google_compute_network.test_vpc.id
+  project = "gcp-demo-416310"
   bgp {
     asn               = 64514
     advertise_mode    = "CUSTOM"
