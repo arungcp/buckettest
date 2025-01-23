@@ -1,6 +1,5 @@
 resource "google_compute_network" "test_vpc" {
   name = var.name
-  project = "gcp-demo-416310"
 }
 
 resource "google_compute_router" "cloudcr" {
