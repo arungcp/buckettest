@@ -1,6 +1,6 @@
-resource "google_compute_network" "test_vpc" {
-  name = var.name
-}
+# resource "google_compute_network" "test_vpc" {
+#   name = var.name
+# }
 
 resource "google_compute_router" "cloudcr" {
   name    = var.cloud_router_name
