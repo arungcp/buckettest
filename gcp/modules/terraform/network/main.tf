@@ -18,7 +18,6 @@ resource "google_compute_router" "cloudcr" {
   }
 }
 
-# resource "google_compute_network" "test_vpc" {
-#   name                    = "my-network"
-#   auto_create_subnetworks = false
-# }
+resource "google_compute_network" "test_vpc" {
+  name                    = var.name
+}
