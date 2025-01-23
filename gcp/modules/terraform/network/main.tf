@@ -4,6 +4,7 @@
 
 resource "google_compute_router" "cloudcr" {
   name    = var.cloud_router_name
+  region = "us-central1"
   network = google_compute_network.test_vpc.id
   bgp {
     asn               = 64514
