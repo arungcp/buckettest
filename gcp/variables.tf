@@ -16,6 +16,11 @@ variable "project_id" {
    type        = string 
 }
 
+variable "vpn_psk" {
+  description = "PSK used for VPN tunnels"
+  type = number
+  sensitive = true
+}
  variable "name" {   
    description = "Name of VPC"   
    type        = string 

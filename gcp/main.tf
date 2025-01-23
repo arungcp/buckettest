@@ -9,7 +9,7 @@ module "gcp" {
 
  module "dnb_ensono_vpc" {   
    source     = "app.terraform.io/dnb-core/dnb_gcp_vpc/google"   
-   version    = "0.0.3"   
+   #version    = "0.0.3"   
    name       = var.name   
    project_id = var.project_id 
   } 
@@ -25,7 +25,7 @@ resource "google_compute_ha_vpn_gateway" "ha_gateway" {
 
  module "router" {   
   source      = "app.terraform.io/dnb-core/dnb-cloudrouter/google"   
-  version     = "2.0.2"   
+  #version     = "2.0.2"   
   for_each = { for i, v in var.vpn_config["routers"] : i => v }   
   name        = "${var.name}-${each.key}"   
   project     = var.project_id   
@@ -73,6 +73,6 @@ resource "google_compute_ha_vpn_gateway" "ha_gateway" {
    vpn_gateway_interface = each.value.vpn_gateway_interface   
    ike_version           = each.value.ike_version   
    shared_secret         = var.vpn_psk   
-    vpn_gateway           = each.value.vpn_gateway_key 
+   vpn_gateway           = each.value.vpn_gateway_key 
   }
 

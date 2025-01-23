@@ -40,4 +40,5 @@ routers = {
   }
 }   
 
+vpn_psk = "dYYWbtN25qPm2fnvhtEUFGJu"
 
