@@ -2,68 +2,68 @@
 #   name = var.name
 # }
 
-resource "google_compute_router" "cloudcr" {
-  name    = var.cloud_router_name
-  region = "us-central1"
-  network = google_compute_network.test_vpc.id
-  bgp {
-    asn               = 64514
-    advertise_mode    = "CUSTOM"
-    advertised_groups = ["ALL_SUBNETS"]
-    advertised_ip_ranges {
-      range = "10.128.0.0/20"
-    }
-  }
-}
+# resource "google_compute_router" "cloudcr" {
+#   name    = var.cloud_router_name
+#   region = "us-central1"
+#   network = google_compute_network.test_vpc.id
+#   bgp {
+#     asn               = 64514
+#     advertise_mode    = "CUSTOM"
+#     advertised_groups = ["ALL_SUBNETS"]
+#     advertised_ip_ranges {
+#       range = "10.128.0.0/20"
+#     }
+#   }
+# }
 
-resource "google_compute_network" "test_vpc" {
-  name                    = var.name
-}
+# resource "google_compute_network" "test_vpc" {
+#   name                    = var.name
+# }
 
-resource "google_monitoring_alert_policy" "test_policy" {
-  display_name = "test policy"
-  documentation {
-    subject = "test"
-  }
-  user_labels = {}
+# resource "google_monitoring_alert_policy" "test_policy" {
+#   display_name = "test policy"
+#   documentation {
+#     subject = "test"
+#   }
+#   user_labels = {}
 
-  conditions {
-    display_name = "Cloud Router - BGP session status change"
-    condition_threshold {
-      aggregations {
-        alignment_period   = "300s"
-        per_series_aligner = "ALIGN_MEAN"
-      }
-      comparison    = "COMPARISON_GT"
-      duration      = "0s"
-      filter        = "resource.type = \"gce_router\" AND metric.type = \"router.googleapis.com/bgp/session_up\" AND metric.labels.bgp_peer_name = \"new-bgp\""
-      threshold_value = 0.5
-      trigger {
-        count = 1
-      }
-    }
-  }
+#   conditions {
+#     display_name = "Cloud Router - BGP session status change"
+#     condition_threshold {
+#       aggregations {
+#         alignment_period   = "300s"
+#         per_series_aligner = "ALIGN_MEAN"
+#       }
+#       comparison    = "COMPARISON_GT"
+#       duration      = "0s"
+#       filter        = "resource.type = \"gce_router\" AND metric.type = \"router.googleapis.com/bgp/session_up\" AND metric.labels.bgp_peer_name = \"new-bgp\""
+#       threshold_value = 0.5
+#       trigger {
+#         count = 1
+#       }
+#     }
+#   }
 
-  alert_strategy {
-    auto_close = "1800s"
-    notification_prompts = ["OPENED", "CLOSED"]
-  }
+#   alert_strategy {
+#     auto_close = "1800s"
+#     notification_prompts = ["OPENED", "CLOSED"]
+#   }
 
-  combiner                = "OR"
-  enabled                 = true
-  notification_channels   = ["projects/decent-tape-416310/notificationChannels/8487441449588706880"]
-  severity                = "CRITICAL"
+#   combiner                = "OR"
+#   enabled                 = true
+#   notification_channels   = ["projects/decent-tape-416310/notificationChannels/8487441449588706880"]
+#   severity                = "CRITICAL"
 
-  creation_record {
-    mutate_time = "2025-01-23T18:00:29.087679611Z"
-    mutated_by  = "Arunkumar.Veerapandian@gmail.com"
-  }
-
-#   mutation_record {
+#   creation_record {
 #     mutate_time = "2025-01-23T18:00:29.087679611Z"
 #     mutated_by  = "Arunkumar.Veerapandian@gmail.com"
 #   }
-}
+
+# #   mutation_record {
+# #     mutate_time = "2025-01-23T18:00:29.087679611Z"
+# #     mutated_by  = "Arunkumar.Veerapandian@gmail.com"
+# #   }
+# }
 
 
 resource "google_monitoring_alert_policy" "bgp_status_change_vpn" {
@@ -118,10 +118,10 @@ resource "google_monitoring_alert_policy" "bgp_status_change_vpn" {
   notification_channels = ["projects/datacenter-in-the-cloud9b856e0/notificationChannels/7106489968635158314"]
   severity              = "CRITICAL"
 
-  creation_record {
-    mutate_time = "2024-09-10T18:37:04.907135156Z"
-    mutated_by  = "armatowskit@dnb.com"
-  }
+  # creation_record {
+  #   mutate_time = "2024-09-10T18:37:04.907135156Z"
+  #   mutated_by  = "armatowskit@dnb.com"
+  # }
 
 #   mutation_record {
 #     mutate_time = "2024-09-10T19:25:35.878561062Z"
