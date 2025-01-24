@@ -118,13 +118,13 @@ resource "google_monitoring_alert_policy" "bgp_status_change_vpn" {
   notification_channels = ["projects/datacenter-in-the-cloud9b856e0/notificationChannels/7106489968635158314"]
   severity              = "CRITICAL"
 
-  # creation_record {
-  #   mutate_time = "2024-09-10T18:37:04.907135156Z"
+  creation_record {
+    mutate_time = "2024-09-10T18:37:04.907135156Z"
+    mutated_by  = "armatowskit@dnb.com"
+  }
+
+  # mutation_record {
+  #   mutate_time = "2024-09-10T19:25:35.878561062Z"
   #   mutated_by  = "armatowskit@dnb.com"
   # }
-
-#   mutation_record {
-#     mutate_time = "2024-09-10T19:25:35.878561062Z"
-#     mutated_by  = "armatowskit@dnb.com"
-#   }
 }
